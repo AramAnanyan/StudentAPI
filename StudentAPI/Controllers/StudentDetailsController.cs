@@ -40,6 +40,16 @@ namespace StudentAPI.Controllers
 
             return studentDetail;
         }
+        [HttpGet("name")]
+        public async Task <IActionResult> GetStudentDetailByName(string name)
+        {
+            var studentDetail = await _context.StudentDetails.Where(m => m.Name == name).ToListAsync();
+            if (studentDetail != null)
+            {
+                return Ok(studentDetail);
+            }
+            else return NotFound();
+        }
 
         // PUT: api/StudentDetails/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
